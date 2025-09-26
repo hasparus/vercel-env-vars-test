@@ -39,13 +39,25 @@ export default function Home() {
         minHeight: "100vh",
       }}
     >
-      <ul>
+      <ul style={{ maxWidth: "100%", overflow: "auto", padding: "1rem" }}>
         {Object.entries(vars).map(([key, value]) => (
-          <li key={key} style={{ listStyleType: "none" }}>
-            {key}: {value}
+          <li
+            key={key}
+            style={{
+              listStyleType: "none",
+              whiteSpace: "pre",
+              padding: "0.125rem",
+            }}
+          >
+            {key}: {value || "(( env vars are set only on Vercel ))"}
           </li>
         ))}
       </ul>
+      <style>{`
+        li:hover {
+          background-color: color-mix(in oklch, var(--foreground) 5%, transparent);
+        }
+      `}</style>
     </main>
   );
 }
